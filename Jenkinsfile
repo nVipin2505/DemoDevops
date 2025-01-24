@@ -1,7 +1,7 @@
 pipeline {
     agent {
         node {
-            label 'slave2'
+            label 'jenkins-slave-2'
         }
     }
     parameters {
@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('SCM checkout'){
             steps {
-		git "https://github.com/vistasunil/devopsIQ.git"
+		git "https://github.com/nVipin2505/devopsIQ.git"
             }
 	}
 	stage('Remove dockers'){
@@ -22,13 +22,13 @@ pipeline {
 	}
 	stage('Build'){
 	    steps {
-		    sh "sudo docker build /home/ubuntu/jenkins/workspace/${JOB_NAME} -t vistasunil/devopsdemo"
+		    sh "sudo docker build /home/ubuntu/jenkins/workspace/${JOB_NAME} -t nVipin2505/devopsdemo"
 	   }
 	}
 	stage('Docker Push'){
 		steps {
-		    sh "sudo docker login --username vistasunil --password ${dockerpass}"
-                    sh "sudo docker push vistasunil/devopsdemo:latest"
+		    sh "sudo docker login --username nVipin2505 --password ${dockerpass}"
+                    sh "sudo docker push nVipin2505/devopsdemo:latest"
 	        }
 	}
 	stage('Configure servers with Docker and deploy website') {
