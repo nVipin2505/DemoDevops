@@ -7,12 +7,12 @@ pipeline {
     stages {
         stage('SCM checkout'){
             steps {
-		        git "https://github.com/vistasunil/devopsIQ.git"
+		        git "https://github.com/nVipin2505/devopsIQ.git"
             }
 		}
 	    stage('Build docker Image'){
 	        steps {
-    	        	sh "sudo docker build /home/ubuntu/jenkins/workspace/seljob -t vistasunil/devopsdemo"
+    	        	sh "sudo docker build /home/ubuntu/jenkins/workspace/seljob -t nVipin2505/devopsdemo"
 	        }
 	    }
 	    stage('Remove existing website'){
@@ -22,12 +22,12 @@ pipeline {
 	    }
 	    stage('Deploy website'){
 	        steps {
-    	        	sh "sudo docker run -d -p 82:80 --name mywebsite vistasunil/devopsdemo"
+    	        	sh "sudo docker run -d -p 82:80 --name mywebsite nVipin2505/devopsdemo"
 	        }
 	    }
 	    stage ('SCM checkout Selenium'){
 	        steps {
-		        git "https://github.com/vistasunil/selenium.git"
+		        git "https://github.com/nVipin2505/selenium.git"
 	        }
 		}
     	stage ('Test Website'){
